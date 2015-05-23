@@ -276,22 +276,46 @@ def turn(game):
                 game.dealer = move_index(game.dealer)
 
 
-print "Starting the game....\n"
-game = Game()
-while len(game.main_deck) != 0:
-    print "\nHere's the main deck"
-    print ', '.join(game.main_deck)
-    print "Dealer is currently " + str(game.dealer)
-    print "Guesser is currently " + str(game.guesser)
-    for i in range(6):
-        print "Player " + str(i) + " has drunk " + str(game.players[i].imbibed) + " drinks."
-    turn(game)
-    print "Table deck now has"
-    print ', '.join(game.table)
-    print "Main deck now has"
-    print ', '.join(game.main_deck)
+#print "Starting the game....\n"
+#    game = Game()
+#    while len(game.main_deck) != 0:
+#        print "\nHere's the main deck"
+#        print ', '.join(game.main_deck)
+#        print "Dealer is currently " + str(game.dealer)
+#        print "Guesser is currently " + str(game.guesser)
+#        for i in range(6):
+#            print "Player " + str(i) + " has drunk " + str(game.players[i].imbibed) + " drinks."
+#        turn(game)
+#        print "Table deck now has"
+#        print ', '.join(game.table)
+#        print "Main deck now has"
+#        print ', '.join(game.main_deck)
 
+# Uncomment the code above if you'd like to see a printout of every single game.
+# Well simulate 10,000 games to see how often the smart player drinks the least.
 
+wins = 0.0
+drinks = [0, 0, 0, 0, 0, 0]
+for i in range(10000):
+    game = Game()
+    while len(game.main_deck) != 0:
+        turn(game)
+
+    smart_player_drinks = game.players[0].imbibed
+    least_drinks = True
+    for player in game.players:
+        if player.imbibed < smart_player_drinks:
+            least_drinks = False
+    for i in range(len(game.players)):
+        drinks[i] += game.players[i].imbibed
+
+    if least_drinks:
+        wins += 1.0
+
+    print "new game\n"
+
+print "The smart player won " + str((wins / 10000) * 100) + "% of the time"
+print drinks
 
 
 
