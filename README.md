@@ -14,3 +14,19 @@ You can verify this by looking at the final print out of the program. `main.py` 
 `[100, 200, 200]`
 
 would mean that the 0th player -- the smart player -- would have drank 100 oz. of whatever drink these imaginary players are playing with over all of the games. 
+
+Here are some example results that I've gotten when running the program:
+
+`python main.py 4 100000` yields:
+
+`[2312292, 4229665, 4310160, 4315151]`
+
+`python main.py 6 1000` yields:
+
+`[18125, 27308, 27720, 26537, 26353, 26354]`
+
+`python main.py 8 10000 yields` yields:
+
+`[162708, 225095, 207257, 195392, 190523, 189216, 192967, 191476]`
+
+
